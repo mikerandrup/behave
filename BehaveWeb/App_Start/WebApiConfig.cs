@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace BehaveWeb
+namespace Behave.BehaveWeb
 {
     public static class WebApiConfig
     {

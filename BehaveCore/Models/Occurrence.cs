@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Behave.BehaveCore.Models
 {
-    public class Instance
+    public class Occurrence
     {
+        int OccurrenceId { get; set; }
+        DateTime Timestamp { get; set; }
+        int HabitId { get; set; }
+        string Notes { get; set; }
     }
 }

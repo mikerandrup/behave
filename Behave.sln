@@ -2,8 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaveWeb", "BehaveWeb\BehaveWeb.csproj", "{5074B383-2EC9-47A8-BFAA-D1BBC2129591}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490} = {1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behave.Tests", "Behave.Tests\Behave.Tests.csproj", "{890BE777-7C93-486E-890E-F04844D0ECA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490} = {1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaveCore", "BehaveCore\BehaveCore.csproj", "{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}"
 EndProject

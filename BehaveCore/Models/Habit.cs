@@ -8,5 +8,9 @@ namespace Behave.BehaveCore.Models
 {
     public class Habit
     {
+        int HabitId { get; set; }
+        float Weight { get; set; }
+        string Title { get; set; }
+        string Description { get; set; }
     }
 }
