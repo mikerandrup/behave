@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaveWeb", "BehaveWeb\Beha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behave.Tests", "Behave.Tests\Behave.Tests.csproj", "{890BE777-7C93-486E-890E-F04844D0ECA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaveCore", "BehaveCore\BehaveCore.csproj", "{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{890BE777-7C93-486E-890E-F04844D0ECA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890BE777-7C93-486E-890E-F04844D0ECA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890BE777-7C93-486E-890E-F04844D0ECA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
