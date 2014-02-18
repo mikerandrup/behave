@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Behave.BehaveWeb.Models
 {
-    public class OccurrenceViewModel : Behave.BehaveCore.Models.Occurrence
+    public class OccurrenceViewModel : Behave.BehaveCore.OriginalModels.Occurrence
     {
     }
 }
