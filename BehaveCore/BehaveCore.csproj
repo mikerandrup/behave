@@ -7,7 +7,7 @@
     <ProjectGuid>{1DFFE76C-513E-4FEB-BB8D-CB5C1B081490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Behave.BehaveCore</RootNamespace>
+    <RootNamespace>Behave</RootNamespace>
     <AssemblyName>BehaveCore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
@@ -49,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConnection.cs" />
-    <Compile Include="OriginalModels\Habit.cs">
+    <Compile Include="DBUtil\Connection.cs" />
+    <Compile Include="DataClasses\Habit.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OriginalModels\Occurrence.cs" />
+    <Compile Include="DataClasses\Occurrence.cs" />
+    <Compile Include="DBUtil\ErrorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SQL Queries\Table Creation.sql" />

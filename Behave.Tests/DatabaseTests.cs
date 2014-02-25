@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using Behave.BehaveCore;
+using Behave.BehaveCore.DBUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Behave.Tests
@@ -13,11 +13,13 @@ namespace Behave.Tests
         {
             try
             {
-                SqlConnection conn = DBConnection.Create();
-                conn.Open();
-                Assert.IsTrue(true);
+                using (SqlConnection conn = Connection.Create())
+                {
+                    conn.Open();
+                    Assert.IsTrue(true);
+                }
             }
-            catch (Exception exc) // done this way to inspect exception
+            catch (Exception exc) // to inspect exception
             {
                 Assert.IsTrue(false);
             }

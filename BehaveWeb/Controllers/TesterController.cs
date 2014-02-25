@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Behave.BehaveCore;
+using Behave.BehaveCore.DBUtils;
 
 namespace Behave.BehaveWeb.Controllers
 {
@@ -15,11 +17,12 @@ namespace Behave.BehaveWeb.Controllers
             bool wasSuccessful = true;
             string helpfulMessage = "Nothing to report";
 
-            var iHateEnvironmentVariables = Environment.GetEnvironmentVariables();
-
             try
             {
-                DBConnection.Create().Open();
+                using (SqlConnection conn = Connection.Create())
+                {
+                    conn.Open();
+                }
             }
             catch (Exception exc)
             {

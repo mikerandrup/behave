@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace Behave.BehaveCore
+namespace Behave.BehaveCore.DBUtils
 {
-    public static class DBConnection
+    public static class Connection
     {
         private const string AZURE_MANDATED_PREFIX = "SQLCONNSTR_";
         private const string AZURE_DB_STRING_NAME = AZURE_MANDATED_PREFIX + "BEHAVE_DB_STRING";

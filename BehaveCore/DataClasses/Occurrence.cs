@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Behave.BehaveCore.OriginalModels
+namespace Behave.BehaveCore.DataClasses
 {
     public class Occurrence
     {

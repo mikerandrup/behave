@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Behave.BehaveWeb.Models
 {
-    public class HabitViewModel : Behave.BehaveCore.OriginalModels.Habit
+    public class HabitViewModel : Behave.BehaveCore.DataClasses.Habit
     {
     }
 }
