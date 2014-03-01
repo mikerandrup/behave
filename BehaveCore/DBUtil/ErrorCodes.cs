@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Behave.BehaveCore.DBUtils
 {
-    public enum DatabaseResultCode
+    public enum DbResult
     {
-        statusUnknown = -1,
-        okay = 1,
-        notFound = 2,
-        miscError = 3
+        Unknown = -1,
+        Okay = 1,
+        NotFound = 2,
+        Error = 3
     }
 }

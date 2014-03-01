@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataClasses\ICrudOrm.cs" />
     <Compile Include="DBUtil\Connection.cs" />
     <Compile Include="DataClasses\Habit.cs">
       <SubType>Code</SubType>

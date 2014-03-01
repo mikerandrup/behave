@@ -19,7 +19,10 @@ namespace Behave.Tests
                     Assert.IsTrue(true);
                 }
             }
-            catch (Exception exc) // to inspect exception
+
+            #pragma warning disable 0168
+            catch (SqlException exc)
+            #pragma warning restore 0168
             {
                 Assert.IsTrue(false);
             }
