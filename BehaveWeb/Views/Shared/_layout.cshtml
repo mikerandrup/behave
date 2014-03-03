@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Behave Web Application";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        nav li {
+            list-style-type: none;
+            display: inline;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/ui/main">Main</a></li>
+            <li><a href="/ui/users">Users</a></li>
+            <li><a href="/ui/habits">Habits</a></li>
+            <li><a href="/ui/occurrences">Occurrences</a></li>
+        </ul>
+    </nav>
+    <header><h1>@ViewBag.Title</h1></header>
+
+    <section>
+        @RenderBody()
+    </section>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    @RenderSection("PageJavaScript", required: false)
+</body>
+</html>

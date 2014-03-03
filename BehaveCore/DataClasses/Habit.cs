@@ -94,7 +94,7 @@ namespace Behave.BehaveCore.DataClasses
                 var query = new StringBuilder();
 
                 query.Append("UPDATE habits ")
-                     .Append("(UserId=@UserId, Importance=@Importance, Title=@Title, Details=@Details) ")
+                     .Append("SET UserId=@UserId, Importance=@Importance, Title=@Title, Details=@Details ")
                      .Append("WHERE HabitId=@HabitId");
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
