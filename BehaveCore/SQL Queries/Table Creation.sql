@@ -20,17 +20,27 @@ CREATE TABLE Habits
 (
 	HabitId int PRIMARY KEY IDENTITY,
 	UserId int REFERENCES Users(UserId) DEFAULT 2, -- Initially, this app will be single user for me personally
-	Importance real DEFAULT 0, 
-	Title varchar (120),
-	Details varchar (4096)
+
+	Interval real DEFAULT 1, -- 1 = Once per day
+	Importance real DEFAULT 0, -- apparently nothing much matters
+	DoingThisIsGood bit default 1, -- usually things are good
+	Title varchar (120) DEFAULT NULL,
+	Details varchar (4096) DEFAULT NULL,
+
+	-- Someday I want a natural language version of this
+	-- that can have tenses applied to the verbs and what not
+	-- and an engine can generate a natural language summary
+	-- of how well things are going.
+	Timing varchar (250) DEFAULT NULL, -- every day
+	Verb varchar (250) DEFAULT NULL, -- wash
+	What varchar (250) DEFAULT NULL, -- the car
 );
-INSERT INTO Habits (Title) VALUES ('Unspecified Habit');
+INSERT INTO Habits (Title) VALUES ('(unspecified habit)');
 
 CREATE TABLE Occurrences
 (
 	OccurrenceId int PRIMARY KEY IDENTITY,
 	EventTime datetime DEFAULT GETDATE(),
 	HabitId int REFERENCES Habits(HabitId) DEFAULT 1,
-	Notes varchar (4096)
+	Notes varchar (4096) DEFAULT NULL
 );
-INSERT INTO Occurrences (Notes) VALUES ('Example Occurrence');
