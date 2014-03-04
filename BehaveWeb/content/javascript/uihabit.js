@@ -34,7 +34,6 @@
 
     serverRequests = {
         init: function () {
-            // jquery ajax setup here
             $.ajaxSetup({
                 cache: false,
                 accepts: "application/json",
@@ -61,7 +60,7 @@
                     habitInputs.clear();
                     status.update(verb + " Complete.");
 
-                    setTimeout(serverRequests.refreshList, 1000);
+                    serverRequests.refreshList();
                 }
             });
         },
@@ -165,7 +164,6 @@
                 markup += "<li data-habit-id=\""
                     + entry.HabitId
                     + "\">" + entry.Title + "</li>";
-
             }
 
             return markup;
@@ -173,7 +171,6 @@
     },
 
     startupFunction = function () {
-
         serverRequests.init();
         methods.attachElements(elements);
 
@@ -182,7 +179,6 @@
         $(elements.habitList).on("click", "li", callbacks.doLoad);
         $(elements.saveButton).on("click", callbacks.doSave);
         $(elements.deleteButton).on("click", callbacks.doDelete);
-
     };
 
     return startupFunction;

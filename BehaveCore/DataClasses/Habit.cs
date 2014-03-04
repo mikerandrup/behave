@@ -36,7 +36,6 @@ namespace Behave.BehaveCore.DataClasses
                 {
                     if (reader.Read())
                     {
-                        //DebugTimestamp = (DateTime)reader["LogEntryDateTime"],
                         UserId = (int)reader["UserId"];
                         Importance = (float)reader["Importance"];
                         Title = reader["Title"].ToString();
@@ -65,15 +64,12 @@ namespace Behave.BehaveCore.DataClasses
         {
             if (HabitId == null) // Create
             {
-                //string insertQuery = "INSERT INTO TestReporting.dbo.BuildIdentity (assemblyString) VALUES (@build);" + "select @identity = cast(scope_identity() as int)";
-
                 var query = new StringBuilder();
 
                 query.Append("INSERT INTO habits ")
                      .Append("(UserId, Importance, Title, Details) ")
                      .Append("VALUES (@UserId, @Importance, @Title, @Details); ")
                      .Append("SELECT @identity = cast(scope_identity() as int)");
-
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
                 insertCommand.CommandText = query.ToString();
@@ -190,9 +186,9 @@ namespace Behave.BehaveCore.DataClasses
                 
             }
 
-#pragma warning disable 0168
+            #pragma warning disable 0168
             catch (SqlException exc)
-#pragma warning restore 0168
+            #pragma warning restore 0168
             {
                 resultCode = DbResult.Error;
             }
