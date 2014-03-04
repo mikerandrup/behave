@@ -1,6 +1,59 @@
 ﻿@{
-    ViewBag.Title = "Habits";
+    ViewBag.Title = "Occurrences";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
 <h2>Occurrences User Interface</h2>
+
+<section id="ModelInputs">
+    <header>
+        <h1>Create/Edit/Delete Occurrence</h1>
+    </header>
+
+    <div>
+        <label for="f1">OccurrenceId</label>
+        <input id="f1" type="number" data-field="occurrenceid" />
+    </div>
+
+    <div>
+        <label for="f2">HabitId</label>
+        <input id="f2" type="number" data-field="habitid" />
+    </div>
+
+    <div>
+        <label for="f3">EventTime</label>
+        <input id="f3" type="text" data-field="eventtime" />
+    </div>
+
+    <div>
+        <label for="f4">Notes</label>
+        <input id="f4" type="text" data-field="notes" />
+    </div>
+
+    <div>
+        <label for="save">Create/Update</label>
+        <button id="save">Save</button>
+    </div>
+
+    <div style="font-size: 0.8em; opacity: 0.7; margin-top: 50px;">
+        <label for="delete">Delete this Item</label>
+        <button id="delete">Delete</button>
+    </div>
+
+</section>
+
+<div id="status">Initializing</div>
+
+<section>
+    <header>
+        <h1>Existing Occurrences</h1>
+    </header>
+    <ul id="existingList">
+        <li>(List Initializing)</li>
+    </ul>
+</section>
+
+
+@section PageJavaScript {
+    <script src="/content/javascript/uioccurrence.js"></script>
+}

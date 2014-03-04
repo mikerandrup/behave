@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\OccurrenceController.cs" />
     <Compile Include="Controllers\UiController.cs" />
     <Compile Include="Controllers\HabitController.cs" />
     <Compile Include="Controllers\TesterController.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\javascript\uioccurrence.js" />
     <Content Include="content\javascript\uihabit.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

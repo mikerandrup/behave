@@ -47,11 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataClasses\ICrudOrm.cs" />
+    <Compile Include="DataClasses\Occurrence.cs" />
     <Compile Include="DBUtil\Connection.cs" />
     <Compile Include="DataClasses\Habit.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataClasses\Occurrence.cs" />
     <Compile Include="DBUtil\ErrorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

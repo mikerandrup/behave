@@ -13,7 +13,7 @@ CREATE TABLE Users
 	Nickname varchar(80),
 	OathUserToken varchar(50) -- TODO: actually find out what will be needed and implement for oAuth-style
 );
-INSERT INTO Users (NickName) VALUES ('Generic User');
+INSERT INTO Users (NickName) VALUES ('(unspecified user)');
 INSERT INTO Users (NickName) VALUES ('Mike Randrup');
 
 CREATE TABLE Habits
@@ -28,7 +28,7 @@ CREATE TABLE Habits
 	Details varchar (4096) DEFAULT NULL,
 
 	-- Someday I want a natural language version of this
-	-- that can have tenses applied to the verbs and what not
+	-- that can have tenses applied to the verbs and what-not
 	-- and an engine can generate a natural language summary
 	-- of how well things are going.
 	Timing varchar (250) DEFAULT NULL, -- every day
