@@ -123,6 +123,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\css\uimain.css" />
+    <Content Include="content\javascript\uimain.js" />
     <Content Include="content\javascript\uioccurrence.js" />
     <Content Include="content\javascript\uihabit.js" />
     <Content Include="Global.asax" />
@@ -137,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="content\css\" />
     <Folder Include="content\images\" />
   </ItemGroup>
   <ItemGroup>
@@ -150,19 +151,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UI\Habits.cshtml" />
+    <Content Include="Views\Ui\Habits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UI\Index.cshtml" />
+    <Content Include="Views\Ui\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UI\Users.cshtml" />
+    <Content Include="Views\Ui\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UI\Occurrences.cshtml" />
+    <Content Include="Views\Ui\Occurrences.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -12,28 +12,31 @@
         body {
             font-family: Helvetica, Arial, sans-serif;
         }
+
         nav li {
             list-style-type: none;
             display: inline;
             padding: 10px;
         }
-
     </style>
+
+    @RenderSection("PageHeadSection", required: false)
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/ui">Main</a></li>
-            <li><a href="/ui/users">Users</a></li>
-            <li><a href="/ui/habits">Habits</a></li>
-            <li><a href="/ui/occurrences">Occurrences</a></li>
-        </ul>
-    </nav>
-    <header><h1>@ViewBag.Title</h1></header>
-
     <section>
         @RenderBody()
     </section>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/ui">Main</a></li>
+                <li><a href="/ui/users">Users</a></li>
+                <li><a href="/ui/habits">Habits</a></li>
+                <li><a href="/ui/occurrences">Occurrences</a></li>
+            </ul>
+        </nav>
+    </footer>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     @RenderSection("PageJavaScript", required: false)
