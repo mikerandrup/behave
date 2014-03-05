@@ -80,6 +80,8 @@
         serverRequests.init();
         methods.attachElements(elements);
 
+        status.update("Initializing...")
+
         //serverRequests.refreshList();
 
         $(elements.entryList).on("click", "li", callbacks.toggleDone);
