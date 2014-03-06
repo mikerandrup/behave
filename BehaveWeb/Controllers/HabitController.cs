@@ -17,7 +17,7 @@ namespace Behave.BehaveWeb.Controllers
 
             using (SqlConnection conn = Connection.Create())
             {
-                conn.Open(); // TODO: Confirm that Dispose() on SqlConnection closes conn as we leave scope
+                conn.Open();
 
                 DbResult result = habitList.LoadFromDB(conn);
                 switch (result)
@@ -40,7 +40,7 @@ namespace Behave.BehaveWeb.Controllers
 
             using (SqlConnection conn = Connection.Create())
             {
-                conn.Open(); // TODO: Confirm that Dispose() on SqlConnection closes conn as we leave scope
+                conn.Open();
 
                 DbResult result = habit.LoadFromDB(conn);
                 switch (result)
@@ -61,7 +61,7 @@ namespace Behave.BehaveWeb.Controllers
             habit.HabitId = null;
             using (SqlConnection conn = Connection.Create())
             {
-                conn.Open(); // TODO: Confirm that Dispose() on SqlConnection closes conn as we leave scope
+                conn.Open();
 
                 DbResult result = habit.SaveToDB(conn);
                 switch (result)
@@ -82,7 +82,7 @@ namespace Behave.BehaveWeb.Controllers
             habit.HabitId = id;
             using (SqlConnection conn = Connection.Create())
             {
-                conn.Open(); // TODO: Confirm that Dispose() on SqlConnection closes conn as we leave scope
+                conn.Open();
 
                 DbResult result = habit.SaveToDB(conn);
                 switch (result)
@@ -103,7 +103,7 @@ namespace Behave.BehaveWeb.Controllers
             habit.HabitId = id;
             using (SqlConnection conn = Connection.Create())
             {
-                conn.Open(); // TODO: Confirm that Dispose() on SqlConnection closes conn as we leave scope
+                conn.Open();
 
                 DbResult result = habit.DeleteFromDB(conn);
                 switch (result)

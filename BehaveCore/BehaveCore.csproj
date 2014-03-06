@@ -46,10 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataClasses\ICrudOrm.cs" />
-    <Compile Include="DataClasses\Occurrence.cs" />
+    <Compile Include="DataClasses\Composed\HabitsWithOccurrences.cs" />
+    <Compile Include="DataClasses\Composed\HabitsWithOccurrencesOnDate.cs" />
+    <Compile Include="DataClasses\Primitives\User.cs" />
+    <Compile Include="DataClasses\Interfaces\ICrudOrm.cs" />
+    <Compile Include="DataClasses\Primitives\Occurrence.cs" />
     <Compile Include="DBUtil\Connection.cs" />
-    <Compile Include="DataClasses\Habit.cs">
+    <Compile Include="DataClasses\Primitives\Habit.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBUtil\ErrorCodes.cs" />
