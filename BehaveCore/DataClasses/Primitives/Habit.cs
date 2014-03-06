@@ -140,11 +140,11 @@ namespace Behave.BehaveCore.DataClasses
     {
         public HabitList()
         {
-            Users = new List<Habit>();
+            Habits = new List<Habit>();
         }
 
         public int UserId = User.DEFAULT_GLOBAL_USERID; // default user ID until we implement users
-        public List<Habit> Users { get; set; }
+        public List<Habit> Habits { get; set; }
 
         public DbResult LoadFromDB(SqlConnection dbConn)
         {
@@ -173,13 +173,13 @@ namespace Behave.BehaveCore.DataClasses
                         item.Title = reader["Title"].ToString();
                         item.Details = reader["Details"].ToString();
 
-                        Users.Add(item);
+                        Habits.Add(item);
 
                         resultCode = DbResult.Okay;
                     }
                 }
 
-                if (Users.Count < 1)
+                if (Habits.Count < 1)
                 {
                     resultCode = DbResult.NotFound;
                 }
