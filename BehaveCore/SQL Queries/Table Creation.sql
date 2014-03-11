@@ -36,10 +36,21 @@ CREATE TABLE Habits
 	What varchar (250) DEFAULT NULL, -- the car
 );
 INSERT INTO Habits (Title) VALUES ('(unspecified habit)');
+INSERT INTO Habits (Title) VALUES ('AM Workout');
+INSERT INTO Habits (Title) VALUES ('AM Yoga');
+INSERT INTO Habits (Title) VALUES ('Veggie Pattie Breakfast only');
+INSERT INTO Habits (Title) VALUES ('AM Fruit & Nut snack only');
+INSERT INTO Habits (Title) VALUES ('Container Meal & Veggie Lunch only');
+INSERT INTO Habits (Title) VALUES ('Take Daily Vitamins');
+INSERT INTO Habits (Title) VALUES ('PM Fruit & Nut snack only');
+INSERT INTO Habits (Title) VALUES ('PM Workout');
+INSERT INTO Habits (Title) VALUES ('PM Yoga');
+INSERT INTO Habits (Title) VALUES ('Not a Drop of Alcohol');
 
 CREATE TABLE Occurrences
 (
 	OccurrenceId int PRIMARY KEY IDENTITY,
+	UserId int REFERENCES Users(UserId) DEFAULT 2, -- Initially, this app will be single user for me personally
 	EventTime datetime DEFAULT GETDATE(),
 	HabitId int REFERENCES Habits(HabitId) DEFAULT 1,
 	Notes varchar (4096) DEFAULT NULL

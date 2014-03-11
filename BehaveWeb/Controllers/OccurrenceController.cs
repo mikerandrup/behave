@@ -13,7 +13,9 @@ namespace Behave.BehaveWeb.Controllers
         // GET api/habit
         public OccurrenceList Get()
         {
-            var occurrenceList = new OccurrenceList();
+            var occurrenceList = new OccurrenceList(
+                BehaveCore.DataClasses.User.DEFAULT_GLOBAL_USERID
+            );
 
             using (SqlConnection conn = Connection.Create())
             {
@@ -26,6 +28,7 @@ namespace Behave.BehaveWeb.Controllers
                         return occurrenceList;
                     case DbResult.NotFound:
                         throw new HttpResponseException(HttpStatusCode.NotFound);
+                        break;
                     default:
                         throw new HttpResponseException(HttpStatusCode.InternalServerError);
                 }

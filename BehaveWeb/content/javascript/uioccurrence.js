@@ -6,6 +6,7 @@
         existingList: "#existingList",
 
         editOccurrenceId: "#ModelInputs input[data-field=occurrenceid]",
+        editUserId: "#ModelInputs input[data-field=userid]",
         editHabitId: "#ModelInputs input[data-field=habitid]",
         editEventTime: "#ModelInputs input[data-field=eventtime]",
         editNotes: "#ModelInputs input[data-field=notes]",
@@ -66,7 +67,7 @@
         deletion: function (id) {
             status.update("Sending Delete for #" + id);
             $.ajax({
-                url: "/api/habit/" + id,
+                url: "/api/occurrence/" + id,
                 method: "DELETE",
                 success: function () {
                     modelInputs.clear();
@@ -126,9 +127,10 @@
         }
     },
 
-    modelInputs = {
+    modelInputs = window.modelInputs = {
         setFromModel: function (model) {
             elements.editOccurrenceId.value = model.OccurrenceId;
+            elements.editUserId.value = model.UserId;
             elements.editHabitId.value = model.HabitId;
             elements.editEventTime.value = model.EventTime;
             elements.editNotes.value = model.Notes;
@@ -136,6 +138,7 @@
         getModel: function () {
             return {
                 OccurrenceId: elements.editOccurrenceId.value,
+                UserId: elements.editUserId.value,
                 HabitId: elements.editHabitId.value,
                 EventTime: elements.editEventTime.value,
                 Notes: elements.editNotes.value,
@@ -143,6 +146,7 @@
         },
         clear: function () {
             elements.editOccurrenceId.value = "";
+            elements.editUserId.value = "";
             elements.editHabitId.value = "";
             elements.editEventTime.value = "";
             elements.editNotes.value = "";

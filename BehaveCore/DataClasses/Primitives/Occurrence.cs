@@ -12,6 +12,7 @@ namespace Behave.BehaveCore.DataClasses
     public class Occurrence : ICrudOrmItem
     {
         public int? OccurrenceId { get; set; }
+        public int UserId { get; set; }
         public DateTime EventTime { get; set; }
         public int HabitId { get; set; }
         public string Notes { get; set; }
@@ -35,6 +36,7 @@ namespace Behave.BehaveCore.DataClasses
                 {
                     if (reader.Read())
                     {
+                        UserId = (int)reader["UserId"];
                         EventTime = (DateTime)reader["EventTime"];
                         HabitId = (int)reader["HabitId"];
                         Notes = reader["Notes"].ToString();
@@ -65,12 +67,13 @@ namespace Behave.BehaveCore.DataClasses
                 var query = new StringBuilder();
 
                 query.Append("INSERT INTO Occurrences ")
-                     .Append("(EventTime, HabitId, Notes) ")
-                     .Append("VALUES (@EventTime, @HabitId, @Notes); ")
+                     .Append("(UserId, EventTime, HabitId, Notes) ")
+                     .Append("VALUES (@UserId, @EventTime, @HabitId, @Notes); ")
                      .Append("SELECT @identity = cast(scope_identity() as int)");
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
                 insertCommand.CommandText = query.ToString();
+                insertCommand.Parameters.AddWithValue("@UserId", this.UserId);
                 insertCommand.Parameters.AddWithValue("@EventTime", this.EventTime);
                 insertCommand.Parameters.AddWithValue("@HabitId", this.HabitId);
                 insertCommand.Parameters.AddWithValue("@Notes", this.Notes);
@@ -87,11 +90,12 @@ namespace Behave.BehaveCore.DataClasses
                 var query = new StringBuilder();
 
                 query.Append("UPDATE Occurrences ")
-                     .Append("SET EventTime=@EventTime, HabitId=@HabitId, Notes=@Notes ")
+                     .Append("SET UserId=@UserId, EventTime=@EventTime, HabitId=@HabitId, Notes=@Notes ")
                      .Append("WHERE OccurrenceId=@OccurrenceId");
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
                 insertCommand.CommandText = query.ToString();
+                insertCommand.Parameters.AddWithValue("@UserId", this.UserId);
                 insertCommand.Parameters.AddWithValue("@EventTime", this.EventTime);
                 insertCommand.Parameters.AddWithValue("@HabitId", this.HabitId);
                 insertCommand.Parameters.AddWithValue("@Notes", this.Notes);
@@ -134,10 +138,13 @@ namespace Behave.BehaveCore.DataClasses
 
     public class OccurrenceList : ICrudOrmList
     {
-        public OccurrenceList()
+        public OccurrenceList(int userId)
         {
+            _userId = userId;
             Occurrences = new List<Occurrence>();
         }
+        private int _userId;
+        public int UserId { get { return _userId; } }
 
         public List<Occurrence> Occurrences { get; set; }
 
@@ -148,21 +155,21 @@ namespace Behave.BehaveCore.DataClasses
             try
             {
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Occurrences "; // WHERE UserId = @userId"; //TODO: Revisit schema to represent users in occurrences?
+                cmd.CommandText = "SELECT * FROM Occurrences WHERE UserId = @userId";
 
-                //cmd.Parameters.Add(new SqlParameter
-                //{
-                //    ParameterName = "@userId",
-                //    Value = UserId
-                //});
+                cmd.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@userId",
+                    Value = UserId
+                });
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var item = new Occurrence();
-
                         item.OccurrenceId = (int)reader["OccurrenceId"];
+                        item.UserId = (int)reader["UserId"];
                         item.EventTime = (DateTime)reader["EventTIme"];
                         item.HabitId = (int)reader["HabitId"];
                         item.Notes = reader["Notes"].ToString();
