@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,13 +139,24 @@ namespace Behave.BehaveCore.DataClasses
 
     public class OccurrenceList : ICrudOrmList
     {
-        public OccurrenceList(int userId)
+        public OccurrenceList(int userId, DateTime beginTime, DateTime endTime)
         {
             _userId = userId;
+            _beginTime = beginTime;
+            _endTime = endTime;
             Occurrences = new List<Occurrence>();
         }
+        public OccurrenceList(int userId, DateTime beginTime) : this(userId, beginTime, beginTime.AddHours(24) ) { }
+        public OccurrenceList(int userId) : this(userId, (DateTime)SqlDateTime.MinValue, (DateTime)SqlDateTime.MaxValue) { }
+
         private int _userId;
         public int UserId { get { return _userId; } }
+
+        private DateTime _beginTime;
+        public DateTime BeginTime { get { return _beginTime; } }
+
+        private DateTime _endTime;
+        public DateTime EndTime { get { return _endTime; } }
 
         public List<Occurrence> Occurrences { get; set; }
 
@@ -154,14 +166,17 @@ namespace Behave.BehaveCore.DataClasses
 
             try
             {
+                var query = new StringBuilder();
+                query.Append("SELECT * ")
+                     .Append("FROM Occurrences ")
+                     .Append("WHERE UserId = @userId ")
+                     .Append("AND EventTime BETWEEN @startTime AND @endTime");
+                
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Occurrences WHERE UserId = @userId";
-
-                cmd.Parameters.Add(new SqlParameter
-                {
-                    ParameterName = "@userId",
-                    Value = UserId
-                });
+                cmd.CommandText = query.ToString();
+                cmd.Parameters.AddWithValue("@userId", UserId);
+                cmd.Parameters.AddWithValue("@startTime", BeginTime);
+                cmd.Parameters.AddWithValue("@endTime", EndTime);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

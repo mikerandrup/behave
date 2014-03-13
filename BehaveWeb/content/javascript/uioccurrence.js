@@ -140,7 +140,7 @@
                 OccurrenceId: elements.editOccurrenceId.value,
                 UserId: elements.editUserId.value,
                 HabitId: elements.editHabitId.value,
-                EventTime: elements.editEventTime.value,
+                EventTime: elements.editEventTime.value || new Date(Date.now()).toISOString(),
                 Notes: elements.editNotes.value,
             };
         },

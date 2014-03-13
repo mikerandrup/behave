@@ -28,7 +28,6 @@ namespace Behave.BehaveWeb.Controllers
                         return occurrenceList;
                     case DbResult.NotFound:
                         throw new HttpResponseException(HttpStatusCode.NotFound);
-                        break;
                     default:
                         throw new HttpResponseException(HttpStatusCode.InternalServerError);
                 }
