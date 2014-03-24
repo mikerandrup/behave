@@ -113,7 +113,7 @@ namespace Behave.BehaveCore.DataClasses
             try
             {
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "UPDATE habits SET IsDeleted=0 WHERE HabitId = @identity";
+                cmd.CommandText = "UPDATE habits SET IsDeleted=1 WHERE HabitId = @identity";
 
                 cmd.Parameters.Add(new SqlParameter
                 {
