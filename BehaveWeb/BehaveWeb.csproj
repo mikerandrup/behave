@@ -118,6 +118,7 @@
     <Compile Include="Models\DailyViewModel.cs" />
     <Compile Include="Models\OccurrenceViewModel.cs" />
     <Compile Include="Models\HabitViewModel.cs" />
+    <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

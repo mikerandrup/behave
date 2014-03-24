@@ -1,8 +1,10 @@
-﻿@{
+﻿@model Behave.BehaveWeb.Models.DailyViewModel
+@{
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-<header>
-    <h1>Wednesday 3/5/2014</h1>
+<header id="userControl" data-user-id="@Model.CurrentUser.UserId"></header>
+<header id="dateControl" data-date="@Model.DailyDate.ToString()">
+    <h1>@Model.DailyDate.ToString("D")</h1>
     <nav>
         <ul>
             <li><a href="?date=(yesterday)">Yesterday</a></li>
@@ -11,17 +13,22 @@
     </nav>
 </header>
 
-<ul id="entries">
-    <li>A habit that was not done today</li>
-    <li>This needs to be done, also</li>
-    <li>Don't forget this one</li>
-    <li>Instead, remember this one</li>
-    <li class="done">This habit was done today</li>
-    <li class="done">So was this one</li>
-    <li class="done">i.e. there was an occurrence for this habit on this date</li>
+<ul id="habitsForDay">
+    @foreach (var habitWithOccurrences in Model.HabitsWithOccurrences)
+    {
+        string displayClass = habitWithOccurrences.HasOccurrences ? "done" : String.Empty;
+
+        <li class="@displayClass"
+            data-habit-id="@habitWithOccurrences.Habit.HabitId"
+            @if (habitWithOccurrences.HasOccurrences) {
+                @:data-occurrences="@habitWithOccurrences.OccurrenceIdListAsCommaDelimitedString"
+            }>
+            @habitWithOccurrences.Habit.Title
+        </li>
+    }
 </ul>
 
-<div id="status">Initializing</div>
+<div id="status"></div>
 
 @section PageHeadSection {
     <link rel="stylesheet" href="/content/css/uimain.css"/>

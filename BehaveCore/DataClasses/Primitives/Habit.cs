@@ -143,7 +143,7 @@ namespace Behave.BehaveCore.DataClasses
             Habits = new List<Habit>();
         }
 
-        public int UserId = User.DEFAULT_GLOBAL_USERID; // default user ID until we implement users
+        public int UserId = BehaveUser.DEFAULT_GLOBAL_USERID; // default user ID until we implement users
         public List<Habit> Habits { get; set; }
 
         public DbResult LoadFromDB(SqlConnection dbConn)

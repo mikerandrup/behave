@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Net;
 using System.Web.Http;
 using Behave.BehaveCore.DataClasses;
@@ -14,7 +12,7 @@ namespace Behave.BehaveWeb.Controllers
         public OccurrenceList Get()
         {
             var occurrenceList = new OccurrenceList(
-                BehaveCore.DataClasses.User.DEFAULT_GLOBAL_USERID
+                BehaveCore.DataClasses.BehaveUser.DEFAULT_GLOBAL_USERID
             );
 
             using (SqlConnection conn = Connection.Create())

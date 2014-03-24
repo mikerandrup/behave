@@ -46,9 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataClasses\Composed\HabitsWithOccurrences.cs" />
-    <Compile Include="DataClasses\Composed\HabitsWithOccurrencesOnDate.cs" />
-    <Compile Include="DataClasses\Primitives\User.cs" />
+    <Compile Include="DataClasses\Composed\SingleHabitWithOccurrences.cs" />
+    <Compile Include="DataClasses\Primitives\BehaveUser.cs" />
     <Compile Include="DataClasses\Interfaces\ICrudOrm.cs" />
     <Compile Include="DataClasses\Primitives\Occurrence.cs" />
     <Compile Include="DBUtil\Connection.cs" />

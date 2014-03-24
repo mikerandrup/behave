@@ -56,10 +56,8 @@
                 method: verb,
                 data: habit,
                 success: function (data) {
-                    console.error(arguments);
                     habitInputs.clear();
                     status.update(verb + " Complete.");
-
                     serverRequests.refreshList();
                 }
             });

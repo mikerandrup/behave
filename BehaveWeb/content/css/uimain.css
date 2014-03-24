@@ -1,9 +1,10 @@
-﻿#entries {
+﻿#habitsForDay {
+    -webkit-user-select: none;
     list-style-type: none;
     padding: 0;
 }
 
-#entries li {
+#habitsForDay li {
     padding: 10px;
     cursor: pointer;
     margin: 15px;
@@ -14,7 +15,7 @@
     background-color: #ffbbb4;
 }
 
-#entries li.done {
+#habitsForDay li[data-occurrences] {
     opacity: 0.7;
     font-size: 0.9em;
     background-color: #a4f4ff;

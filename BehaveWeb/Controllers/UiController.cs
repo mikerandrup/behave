@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Behave.BehaveCore;
+using Behave.BehaveCore.DataClasses;
 using Behave.BehaveCore.DBUtils;
+using Behave.BehaveWeb.Models;
 
 namespace Behave.BehaveWeb.Controllers
 {
@@ -14,7 +12,17 @@ namespace Behave.BehaveWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var defaultUser = new BehaveUser();
+            var today = DateTime.Now;
+            var vm = new DailyViewModel(today, defaultUser);
+
+            using (SqlConnection conn = Connection.Create())
+            {
+                conn.Open();
+                vm.PopulateData(dbConn: conn);
+            }
+
+            return View(vm);
         }
 
         public ActionResult Users()

@@ -9,7 +9,7 @@ using Behave.BehaveCore.DBUtils;
 
 namespace Behave.BehaveCore.DataClasses
 {
-    public class User : ICrudOrmItem
+    public class BehaveUser : ICrudOrmItem
     {
         public const int DEFAULT_GLOBAL_USERID = 2; // Single user initially, multi-user later
 

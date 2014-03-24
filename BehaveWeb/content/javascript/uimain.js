@@ -3,18 +3,26 @@
     'use strict';
 
     var elements = {
-        entryList: "#entries",
-
-        status: "#status"
+        entryList: "#habitsForDay",
+        status: "#status",
+        dateControl: "#dateControl",
+        userControl: "#userControl"
     },
 
     callbacks = {
-        toggleDone: function (evt) {
-            var el = evt.currentTarget;
-
-            status.update("Doing pointless toggle.");
-            $(el).toggleClass("done");
-
+        markDone: function (evt) {
+            var el = evt.currentTarget,
+                habitId = el.getAttribute("data-habit-id");
+            el.setAttribute("data-occurrences", "");
+            status.update("Creating new occurrence for this habit.");
+            serverRequests.createNewOccurrence(habitId, el);
+        },
+        markUndone: function (evt) {
+            var el = evt.currentTarget,
+                habitIdList = el.getAttribute("data-occurrences").split(',');
+            el.removeAttribute("data-occurrences");
+            status.update("Removing all occurrences for habit.");
+            serverRequests.deleteOldOccurrences(habitIdList);
         }
     },
 
@@ -26,6 +34,33 @@
                 async: true,
                 complete: methods.reportResponse
             });
+        },
+        createNewOccurrence: function (habitId, elementNeedingAttribute) {
+
+            var occurrenceData = {
+                UserId: elements.userControl.getAttribute("data-user-id"),
+                HabitId: habitId,
+                EventTime: elements.dateControl.getAttribute("data-date"),
+                Notes: "Occurrence created automatically by DailyView web interface click"
+            }
+
+            $.ajax({
+                url: "/api/occurrence",
+                method: "POST",
+                data: occurrenceData,
+                success: function (createdId) {
+                    status.update("Created Occurrence #" + createdId);
+                    elementNeedingAttribute.setAttribute("data-occurrences", createdId);
+                }
+            });
+        },
+        deleteOldOccurrences: function (occurrenceList) {
+            for (var i = 0, l = occurrenceList.length; i < l; i++) {
+                $.ajax({
+                    url: "/api/occurrence/" + occurrenceList[i],
+                    method: "DELETE",
+                });
+            }
         }
     },
 
@@ -56,35 +91,14 @@
         }
     },
 
-    render = {
-        existingList: function (listData) {
-            var markup = "",
-                entry;
-
-            for (var i = 0, len = listData.Occurrences.length; i < len; i++) {
-                entry = listData.Occurrences[i];
-
-                markup += "<li data-occurrence-id=\""
-                    + entry.OccurrenceId
-                    + "\">"
-                    + entry.OccurrenceId
-                    + " @ "
-                    + entry.EventTime + "</li>";
-            }
-
-            return markup;
-        }
-    },
+    render = {},
 
     startupFunction = function () {
         serverRequests.init();
         methods.attachElements(elements);
 
-        status.update("Initializing...")
-
-        //serverRequests.refreshList();
-
-        $(elements.entryList).on("click", "li", callbacks.toggleDone);
+        $(elements.entryList).on("click", "li[data-occurrences]", callbacks.markUndone);
+        $(elements.entryList).on("click", "li:not([data-occurrences])", callbacks.markDone);
     };
 
     return startupFunction;
