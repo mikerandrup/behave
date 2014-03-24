@@ -61,7 +61,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQL Queries\Table Creation.sql" />
+    <Content Include="SQL Queries\Table Creation.sql.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
