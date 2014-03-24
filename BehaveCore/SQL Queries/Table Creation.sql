@@ -21,6 +21,8 @@ CREATE TABLE Habits
 	HabitId int PRIMARY KEY IDENTITY,
 	UserId int REFERENCES Users(UserId) DEFAULT 2, -- Initially, this app will be single user for me personally
 
+	IsDeleted bit default 0,
+
 	Interval real DEFAULT 1, -- 1 = Once per day
 	Importance real DEFAULT 0, -- apparently nothing much matters
 	DoingThisIsGood bit default 1, -- usually things are good

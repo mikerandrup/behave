@@ -56,8 +56,6 @@ namespace Behave.BehaveWeb.Models
 
                 HabitsWithOccurrences.Add(currentSingleHabitWithOccurrences);
             }
-
-            var troo = true;
         }
     }
 }

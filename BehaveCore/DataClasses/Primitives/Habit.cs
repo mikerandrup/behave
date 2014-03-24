@@ -113,7 +113,7 @@ namespace Behave.BehaveCore.DataClasses
             try
             {
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Habits WHERE HabitId = @identity";
+                cmd.CommandText = "UPDATE habits SET IsDeleted=false WHERE HabitId = @identity";
 
                 cmd.Parameters.Add(new SqlParameter
                 {
@@ -153,7 +153,7 @@ namespace Behave.BehaveCore.DataClasses
             try
             {
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Habits WHERE UserId = @userId";
+                cmd.CommandText = "SELECT * FROM Habits WHERE UserId = @userId AND IsDeleted=false";
 
                 cmd.Parameters.Add(new SqlParameter
                 {
