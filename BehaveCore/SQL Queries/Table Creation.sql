@@ -37,7 +37,7 @@ CREATE TABLE Habits
 	Verb varchar (250) DEFAULT NULL, -- wash
 	What varchar (250) DEFAULT NULL, -- the car
 );
-INSERT INTO Habits (Title) VALUES ('(unspecified habit)');
+INSERT INTO Habits (Title, IsDeleted) VALUES ('(unspecified habit)', 1);
 INSERT INTO Habits (Title) VALUES ('AM Workout');
 INSERT INTO Habits (Title) VALUES ('AM Yoga');
 INSERT INTO Habits (Title) VALUES ('Veggie Pattie Breakfast only');
