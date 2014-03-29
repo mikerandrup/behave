@@ -9,12 +9,11 @@ namespace Behave.BehaveWeb.Controllers
 {
     public class UiController : Controller
     {
-
-        public ActionResult Index()
+        public ActionResult Index(DateTime? date)
         {
             var defaultUser = new BehaveUser();
-            var today = DateTime.Now;
-            var vm = new DailyViewModel(today, defaultUser);
+
+            var vm = new DailyViewModel(date ?? DateTime.Now, defaultUser);
 
             using (SqlConnection conn = Connection.Create())
             {

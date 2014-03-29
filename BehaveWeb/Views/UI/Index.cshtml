@@ -1,14 +1,16 @@
 ﻿@model Behave.BehaveWeb.Models.DailyViewModel
 @{
     Layout = "~/Views/Shared/_layout.cshtml";
+    string nextDate = Server.UrlEncode(@Model.NextDay.ToString("D"));
+    string priorDate = Server.UrlEncode(@Model.PriorDay.ToString("D"));
 }
 <header id="userControl" data-user-id="@Model.CurrentUser.UserId"></header>
 <header id="dateControl" data-date="@Model.DailyDate.ToString()">
     <h1>@Model.DailyDate.ToString("D")</h1>
     <nav>
         <ul>
-            <li><a href="?date=(yesterday)">Yesterday</a></li>
-            <li><a href="?date=(tomorrow)">Tomorrow</a></li>
+            <li><a href="?date=@priorDate">Yesterday</a></li>
+            <li><a href="?date=@nextDate">Tomorrow</a></li>
         </ul>
     </nav>
 </header>

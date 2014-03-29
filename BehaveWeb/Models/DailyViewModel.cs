@@ -23,6 +23,9 @@ namespace Behave.BehaveWeb.Models
         public DailyViewModel() : this(DateTime.Now, null) { }
 
         public DateTime DailyDate { get; set; }
+        public DateTime NextDay { get { return DailyDate.AddDays(1); } }
+        public DateTime PriorDay { get { return DailyDate.AddDays(-1); } } 
+
         public BehaveUser CurrentUser { get; set; }
         public List<SingleHabitWithOccurrences> HabitsWithOccurrences { get; set; }
 
