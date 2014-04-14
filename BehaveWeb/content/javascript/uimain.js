@@ -16,6 +16,7 @@
             el.setAttribute("data-occurrences", "");
             status.update("Creating new occurrence for this habit.");
             serverRequests.createNewOccurrence(habitId, el);
+            elements.entryList.appendChild(el);
         },
         markUndone: function (evt) {
             var el = evt.currentTarget,
