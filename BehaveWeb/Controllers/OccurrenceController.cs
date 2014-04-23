@@ -6,6 +6,7 @@ using Behave.BehaveCore.DBUtils;
 
 namespace Behave.BehaveWeb.Controllers
 {
+    [Authorize]
     public class OccurrenceController : ApiController
     {
         // GET api/habit

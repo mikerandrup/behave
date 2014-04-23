@@ -41,5 +41,22 @@ namespace Behave.BehaveWeb.Controllers
             return jsonResult;
         }
 
+        [Authorize]
+        public ActionResult PrivatePage()
+        {
+            return Json(new { Authorized = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PublicPage()
+        {
+            return Json(new { Authorized = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void SetAuthToken(string authToken)
+        {
+            var authCookie = new HttpCookie(BehaveMvcApplication.AUTH_TOKEN_COOKIE_NAME, authToken);
+            authCookie.Expires = DateTime.Now.AddYears(2);
+            Response.AppendCookie(authCookie);
+        }
     }
 }

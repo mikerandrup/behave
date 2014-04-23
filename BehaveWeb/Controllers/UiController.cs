@@ -7,6 +7,7 @@ using Behave.BehaveWeb.Models;
 
 namespace Behave.BehaveWeb.Controllers
 {
+    [Authorize]
     public class UiController : Controller
     {
         public ActionResult Index(DateTime? date)
