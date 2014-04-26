@@ -16,6 +16,7 @@ namespace Behave.BehaveCore.DataClasses
         public float Importance { get; set; }
         public string Title { get; set; }
         public string Details { get; set; }
+        public int Sort { get; set; }
 
         public DbResult LoadFromDB(SqlConnection dbConn)
         {
@@ -40,6 +41,7 @@ namespace Behave.BehaveCore.DataClasses
                         Importance = (float)reader["Importance"];
                         Title = reader["Title"].ToString();
                         Details = reader["Details"].ToString();
+                        Sort = (int)reader["Sort"];
 
                         resultCode = DbResult.Okay;
                     }
@@ -67,8 +69,8 @@ namespace Behave.BehaveCore.DataClasses
                 var query = new StringBuilder();
 
                 query.Append("INSERT INTO habits ")
-                     .Append("(UserId, Importance, Title, Details) ")
-                     .Append("VALUES (@UserId, @Importance, @Title, @Details); ")
+                     .Append("(UserId, Importance, Title, Details, Sort) ")
+                     .Append("VALUES (@UserId, @Importance, @Title, @Details, @Sort); ")
                      .Append("SELECT @identity = cast(scope_identity() as int)");
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
@@ -77,6 +79,7 @@ namespace Behave.BehaveCore.DataClasses
                 insertCommand.Parameters.AddWithValue("@Importance", this.Importance);
                 insertCommand.Parameters.AddWithValue("@Title", this.Title);
                 insertCommand.Parameters.AddWithValue("@Details", this.Details);
+                insertCommand.Parameters.AddWithValue("@Sort", this.Sort);
                 insertCommand.Parameters.Add("@identity", SqlDbType.Int);
                 insertCommand.Parameters["@identity"].Direction = ParameterDirection.Output;
                 insertCommand.ExecuteNonQuery();
@@ -153,7 +156,7 @@ namespace Behave.BehaveCore.DataClasses
             try
             {
                 SqlCommand cmd = dbConn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Habits WHERE UserId = @userId AND IsDeleted=0";
+                cmd.CommandText = "SELECT * FROM Habits WHERE UserId = @userId AND IsDeleted=0 ORDER BY Sort ASC";
 
                 cmd.Parameters.Add(new SqlParameter
                 {
