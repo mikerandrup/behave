@@ -10,13 +10,27 @@ using Behave.BehaveCore.DBUtils;
 
 namespace Behave.BehaveCore.DataClasses
 {
+    public enum OccurrenceType
+    {
+        Completed = 0,
+        PartiallyCompleted = 1,
+        PlannedNotComplete = 21,
+        UnplannedNotComplete = 22
+    }
+
     public class Occurrence : ICrudOrmItem
     {
+        public Occurrence()
+        {
+            EventType = OccurrenceType.Completed;
+        }
+        
         public int? OccurrenceId { get; set; }
         public int UserId { get; set; }
         public DateTime EventTime { get; set; }
         public int HabitId { get; set; }
         public string Notes { get; set; }
+        public OccurrenceType EventType { get; set; }
 
         public DbResult LoadFromDB(SqlConnection dbConn)
         {
@@ -41,6 +55,7 @@ namespace Behave.BehaveCore.DataClasses
                         EventTime = (DateTime)reader["EventTime"];
                         HabitId = (int)reader["HabitId"];
                         Notes = reader["Notes"].ToString();
+                        EventType = (OccurrenceType)reader["EventType"];
 
                         resultCode = DbResult.Okay;
                     }
@@ -68,8 +83,8 @@ namespace Behave.BehaveCore.DataClasses
                 var query = new StringBuilder();
 
                 query.Append("INSERT INTO Occurrences ")
-                     .Append("(UserId, EventTime, HabitId, Notes) ")
-                     .Append("VALUES (@UserId, @EventTime, @HabitId, @Notes); ")
+                     .Append("(UserId, EventTime, HabitId, Notes, EventType) ")
+                     .Append("VALUES (@UserId, @EventTime, @HabitId, @Notes, @EventType); ")
                      .Append("SELECT @identity = cast(scope_identity() as int)");
 
                 SqlCommand insertCommand = dbConn.CreateCommand();
@@ -78,6 +93,7 @@ namespace Behave.BehaveCore.DataClasses
                 insertCommand.Parameters.AddWithValue("@EventTime", this.EventTime);
                 insertCommand.Parameters.AddWithValue("@HabitId", this.HabitId);
                 insertCommand.Parameters.AddWithValue("@Notes", this.Notes);
+                insertCommand.Parameters.AddWithValue("@EventType", this.EventType);
                 insertCommand.Parameters.Add("@identity", SqlDbType.Int);
                 insertCommand.Parameters["@identity"].Direction = ParameterDirection.Output;
                 insertCommand.ExecuteNonQuery();
