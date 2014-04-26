@@ -6,7 +6,8 @@
         entryList: "#habitsForDay",
         status: "#status",
         dateControl: "#dateControl",
-        userControl: "#userControl"
+        userControl: "#userControl",
+        dateChooser: "#dateChooser"
     },
 
     callbacks = {
@@ -24,6 +25,11 @@
             el.removeAttribute("data-occurrences");
             status.update("Removing all occurrences for habit.");
             serverRequests.deleteOldOccurrences(habitIdList);
+        },
+        jumpToDate: function (evt) {
+            var el = evt.currentTarget,
+                chosenDateString = el.value;
+            window.location.href = "?date=" + window.encodeURIComponent(chosenDateString);
         }
     },
 
@@ -100,6 +106,7 @@
 
         $(elements.entryList).on("click", "li[data-occurrences]", callbacks.markUndone);
         $(elements.entryList).on("click", "li:not([data-occurrences])", callbacks.markDone);
+        $(elements.dateChooser).on("blur", callbacks.jumpToDate)
     };
 
     return startupFunction;
