@@ -36,6 +36,8 @@ CREATE TABLE Habits
 	Timing varchar (250) DEFAULT NULL, -- every day
 	Verb varchar (250) DEFAULT NULL, -- wash
 	What varchar (250) DEFAULT NULL, -- the car
+
+	Sort int DEFAULT 0
 );
 INSERT INTO Habits (Title, IsDeleted) VALUES ('(unspecified habit)', 1);
 INSERT INTO Habits (Title) VALUES ('AM Workout');
@@ -55,5 +57,6 @@ CREATE TABLE Occurrences
 	UserId int REFERENCES Users(UserId) DEFAULT 2, -- Initially, this app will be single user for me personally
 	EventTime datetime DEFAULT GETDATE(),
 	HabitId int REFERENCES Habits(HabitId) DEFAULT 1,
-	Notes varchar (4096) DEFAULT NULL
+	Notes varchar (4096) DEFAULT NULL,
+	EventType int DEFAULT 0
 );
