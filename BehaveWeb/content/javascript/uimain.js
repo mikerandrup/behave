@@ -7,7 +7,8 @@
         status: "#status",
         dateControl: "#dateControl",
         userControl: "#userControl",
-        dateChooser: "#dateChooser"
+        dateChooser: "#dateChooser",
+        eventTypeEnumEl: "#eventTypeEnumEl"
     },
 
     callbacks = {
@@ -100,9 +101,22 @@
 
     render = {},
 
+    _eventTypes = null,
+    getEventTypes = function () {
+        if (_eventTypes == null) {
+            _eventTypes = $(elements.eventTypeEnumEl).data("event-codes");
+        }
+        return _eventTypes;
+    },
+
     startupFunction = function () {
         serverRequests.init();
         methods.attachElements(elements);
+
+        console.log(getEventTypes());
+        console.log(getEventTypes());
+        console.log(getEventTypes());
+
 
         $(elements.entryList).on("click", "li[data-occurrences]", callbacks.markUndone);
         $(elements.entryList).on("click", "li:not([data-occurrences])", callbacks.markDone);

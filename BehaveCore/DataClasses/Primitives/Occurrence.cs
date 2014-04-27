@@ -10,6 +10,9 @@ using Behave.BehaveCore.DBUtils;
 
 namespace Behave.BehaveCore.DataClasses
 {
+    /// <summary>
+    /// You can't change codes already in the DB.  Otherwise, this is quite flexible.
+    /// </summary>
     public enum OccurrenceType
     {
         Completed = 0,

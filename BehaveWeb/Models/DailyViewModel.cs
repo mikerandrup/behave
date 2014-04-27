@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Behave.BehaveCore.DataClasses;
+using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace Behave.BehaveWeb.Models
 {
@@ -22,9 +24,21 @@ namespace Behave.BehaveWeb.Models
         }
         public DailyViewModel() : this(DateTime.Now, null) { }
 
+        public string EventCodes
+        {
+            get
+            {
+                return new JavaScriptSerializer().Serialize(
+                    Enum.GetValues(typeof(OccurrenceType))
+                   .Cast<OccurrenceType>()
+                   .ToDictionary(t => t.ToString(), t => (int)t)
+                );
+            }
+        }
+
         public DateTime DailyDate { get; set; }
         public DateTime NextDay { get { return DailyDate.AddDays(1); } }
-        public DateTime PriorDay { get { return DailyDate.AddDays(-1); } } 
+        public DateTime PriorDay { get { return DailyDate.AddDays(-1); } }
 
         public BehaveUser CurrentUser { get; set; }
         public List<SingleHabitWithOccurrences> HabitsWithOccurrences { get; set; }
@@ -33,7 +47,8 @@ namespace Behave.BehaveWeb.Models
         {
             int userId = CurrentUser.UserId ?? BehaveUser.DEFAULT_GLOBAL_USERID;
 
-            var habitList = new HabitList() { 
+            var habitList = new HabitList()
+            {
                 UserId = userId
             };
             habitList.LoadFromDB(dbConn);
