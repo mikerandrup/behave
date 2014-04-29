@@ -109,13 +109,15 @@
         return _eventTypes;
     },
 
+    viewModel = null,
+
     startupFunction = function () {
         serverRequests.init();
         methods.attachElements(elements);
 
-        console.log(getEventTypes());
-        console.log(getEventTypes());
-        console.log(getEventTypes());
+        viewModel = $(elements.entryList).data("view-model");
+
+        console.log(viewModel);
 
 
         $(elements.entryList).on("click", "li[data-occurrences]", callbacks.markUndone);

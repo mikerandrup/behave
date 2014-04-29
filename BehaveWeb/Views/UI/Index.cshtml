@@ -17,22 +17,18 @@
     </nav>
 </header>
 
-<ul id="habitsForDay">
+<ul id="habitsForDay" data-view-model="@Model.ToJson()">
     @foreach (var habitWithOccurrences in Model.HabitsWithOccurrences)
     {
-        string displayClass = habitWithOccurrences.HasOccurrences ? "done" : String.Empty;
-
-        <li class="@displayClass"
+        <li
             data-habit-id="@habitWithOccurrences.Habit.HabitId"
             @if (habitWithOccurrences.HasOccurrences) {
                 @:data-occurrences="@habitWithOccurrences.OccurrenceIdListAsCommaDelimitedString"
             }>
-            @habitWithOccurrences.Habit.Title
+            &laquo; @habitWithOccurrences.Habit.Title &raquo;
         </li>
     }
 </ul>
-
-<div id="eventTypeEnumEl" style="display:none;" data-event-codes="@Model.EventCodes"></div>
 
 <div id="status"></div>
 

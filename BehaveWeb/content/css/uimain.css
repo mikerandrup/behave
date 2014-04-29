@@ -2,17 +2,19 @@
     -webkit-user-select: none;
     list-style-type: none;
     padding: 0;
+    margin: 0 -8px;
 }
 
 #habitsForDay li {
-    padding: 10px;
+    padding: 20px;
     cursor: pointer;
-    margin: 15px;
-    border-radius: 10px;
+    margin: 0px;
+    border-top: 1px solid #808080;
 
     font-weight: bold;
     font-size: 1.0em;
     background-color: #ffbbb4;
+    text-align: center;
 }
 
 #habitsForDay li[data-occurrences] {
