@@ -116,6 +116,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DailyViewModel.cs" />
+    <Compile Include="Models\SubModels\UiStylesByEventType.cs" />
+    <Compile Include="Models\SubModels\RequireReasonByEventRules.cs" />
+    <Compile Include="Models\SubModels\Gestures.cs" />
+    <Compile Include="Models\SubModels\EventCodeByGesture.cs" />
+    <Compile Include="Models\SubModels\ClientEventTypeRules.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

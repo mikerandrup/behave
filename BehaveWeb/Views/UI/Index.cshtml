@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_layout.cshtml";
     string nextDate = Server.UrlEncode(@Model.NextDay.ToString("D"));
     string priorDate = Server.UrlEncode(@Model.PriorDay.ToString("D"));
+    
+    var UiClassNamesMap = new Behave.Models.SubModels.UiStylesByEventType();
 }
 <header id="userControl" data-user-id="@Model.CurrentUser.UserId"></header>
 <header id="dateControl" data-date="@Model.DailyDate.ToString()">
@@ -24,6 +26,7 @@
             data-habit-id="@habitWithOccurrences.Habit.HabitId"
             @if (habitWithOccurrences.HasOccurrences) {
                 @:data-occurrences="@habitWithOccurrences.OccurrenceIdListAsCommaDelimitedString"
+                @:class="@UiClassNamesMap[habitWithOccurrences.FirstOccurrenceType]"
             }>
             &laquo; @habitWithOccurrences.Habit.Title &raquo;
         </li>

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Behave.BehaveCore.DataClasses;
-using System.Linq;
-using System.Web.Script.Serialization;
+using Behave.Models.SubModels;
 
 namespace Behave.BehaveWeb.Models
 {
@@ -21,82 +20,10 @@ namespace Behave.BehaveWeb.Models
             );
 
             HabitsWithOccurrences = new List<SingleHabitWithOccurrences>();
+
+            GestureRules = new ClientEventTypeRules();
         }
         public DailyViewModel() : this(DateTime.Now, null) { }
-
-        public enum Gestures
-        {
-            farLeft,
-            slightLeft,
-            tap,
-            slightRight,
-            farRight
-        }
-
-        private Dictionary<Gestures, OccurrenceType> _gestureRules;
-        private Dictionary<Gestures, OccurrenceType> EventCodeByGestureRules
-        {
-            get
-            {
-                if (_gestureRules == null)
-                {
-                    _gestureRules = new Dictionary<Gestures, OccurrenceType>();
-                    _gestureRules.Add(Gestures.farLeft, OccurrenceType.UnplannedNotComplete);
-                    _gestureRules.Add(Gestures.slightLeft, OccurrenceType.PlannedNotComplete);
-                    _gestureRules.Add(Gestures.tap, OccurrenceType.Completed);
-                    _gestureRules.Add(Gestures.slightRight, OccurrenceType.Completed);
-                    _gestureRules.Add(Gestures.farRight, OccurrenceType.PartiallyCompleted);
-                }
-                return _gestureRules;
-            }
-        }
-
-        private Dictionary<OccurrenceType, bool> _reasonRules;
-        private Dictionary<OccurrenceType, bool> RequireReasonByEventRules
-        {
-            get
-            {
-                if (_reasonRules == null)
-                {
-                    _reasonRules = new Dictionary<OccurrenceType, bool>();
-                    _reasonRules.Add(OccurrenceType.UnplannedNotComplete, true);
-                    _reasonRules.Add(OccurrenceType.PlannedNotComplete, true);
-                    _reasonRules.Add(OccurrenceType.Completed, false);
-                    _reasonRules.Add(OccurrenceType.PartiallyCompleted, true);
-                }
-                return _reasonRules;
-            }
-        }
-
-        public struct GestureRule
-        {
-            public string GestureName;
-            public int OccurrenceCode;
-            public bool RequiresReason;
-        }
-
-        public List<GestureRule> GestureRuleSet
-        {
-            get
-            {
-                var ruleSet = new List<GestureRule>();
-
-                foreach (KeyValuePair<Gestures, OccurrenceType> kvRule in EventCodeByGestureRules)
-                {
-                    ruleSet.Add(
-                        new GestureRule()
-                        {
-                            GestureName = kvRule.Key.ToString(),
-                            OccurrenceCode = (int)kvRule.Value,
-                            RequiresReason = RequireReasonByEventRules[kvRule.Value]
-                        }
-                    );
-                }
-
-                return ruleSet;
-            }
-        }
-
 
         public DateTime DailyDate { get; set; }
         public DateTime NextDay { get { return DailyDate.AddDays(1); } }
@@ -137,5 +64,7 @@ namespace Behave.BehaveWeb.Models
                 HabitsWithOccurrences.Add(currentSingleHabitWithOccurrences);
             }
         }
+
+        public ClientEventTypeRules GestureRules { get; set; }
     }
 }

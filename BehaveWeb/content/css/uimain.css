@@ -17,8 +17,27 @@
     text-align: center;
 }
 
-#habitsForDay li[data-occurrences] {
+#habitsForDay li.deemedGreat {
     opacity: 0.7;
     font-size: 0.9em;
-    background-color: #a4f4ff;
+    background-color: #7AAE64;
+}
+
+
+#habitsForDay li.deemedGood {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #ce7509;
+}
+
+#habitsForDay li.deemedOkay {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #50e8f7;
+}
+
+#habitsForDay li.deemedBad {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #b60d0d;
 }

@@ -15,6 +15,7 @@ namespace Behave.BehaveCore.DataClasses
     /// </summary>
     public enum OccurrenceType
     {
+        Pending = -1,
         Completed = 0,
         PartiallyCompleted = 1,
         PlannedNotComplete = 21,
@@ -207,6 +208,7 @@ namespace Behave.BehaveCore.DataClasses
                         item.EventTime = (DateTime)reader["EventTIme"];
                         item.HabitId = (int)reader["HabitId"];
                         item.Notes = reader["Notes"].ToString();
+                        item.EventType = (OccurrenceType)reader["EventType"];
 
                         Occurrences.Add(item);
 
