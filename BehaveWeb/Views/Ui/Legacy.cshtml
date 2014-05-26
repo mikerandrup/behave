@@ -1,0 +1,43 @@
+﻿@model Behave.BehaveWeb.Models.DailyViewModel
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+    string nextDate = Server.UrlEncode(@Model.NextDay.ToString("D"));
+    string priorDate = Server.UrlEncode(@Model.PriorDay.ToString("D"));
+    
+    var UiClassNamesMap = new Behave.Models.SubModels.UiStylesByEventType();
+}
+<header id="userControl" data-user-id="@Model.CurrentUser.UserId"></header>
+<header id="dateControl" data-date="@Model.DailyDate.ToString()">
+    <h1>@Model.DailyDate.ToString("D")</h1>
+    <nav>
+        <ul>
+            <li><a href="?date=@priorDate">Previous</a></li>
+            <li><a href="?">Today</a></li>
+            <li><a href="?date=@nextDate">Next</a></li>
+            <li><input type=date id="dateChooser"/></li>
+        </ul>
+    </nav>
+</header>
+
+<ul id="habitsForDay" data-view-model="@Model.ToJson()">
+    @foreach (var habitWithOccurrences in Model.HabitsWithOccurrences)
+    {
+        <li
+            data-habit-id="@habitWithOccurrences.Habit.HabitId"
+            @if (habitWithOccurrences.HasOccurrences) {
+                @:data-occurrences="@habitWithOccurrences.OccurrenceIdListAsCommaDelimitedString"
+                @:class="@UiClassNamesMap[habitWithOccurrences.FirstOccurrenceType]"
+            }>
+            &laquo; @habitWithOccurrences.Habit.Title &raquo;
+        </li>
+    }
+</ul>
+
+<div id="status"></div>
+
+@section PageHeadSection {
+    <link rel="stylesheet" href="/content/css/uilegacy.css"/>
+}
+@section PageJavaScript {
+    <script src="/content/javascript/uilegacy.js"></script>
+}

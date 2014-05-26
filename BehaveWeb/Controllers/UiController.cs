@@ -12,6 +12,18 @@ namespace Behave.BehaveWeb.Controllers
     {
         public ActionResult Index(DateTime? date)
         {
+            DailyViewModel vm = PrepareDailyViewModel(date);
+            return View(vm);
+        }
+
+        public ActionResult Legacy(DateTime? date)
+        {
+            DailyViewModel vm = PrepareDailyViewModel(date);
+            return View(vm);
+        }
+
+        private static DailyViewModel PrepareDailyViewModel(DateTime? date)
+        {
             var defaultUser = new BehaveUser();
 
             var vm = new DailyViewModel(date ?? DateTime.Now, defaultUser);
@@ -21,8 +33,7 @@ namespace Behave.BehaveWeb.Controllers
                 conn.Open();
                 vm.PopulateData(dbConn: conn);
             }
-
-            return View(vm);
+            return vm;
         }
 
         public ActionResult Users()
@@ -39,5 +50,6 @@ namespace Behave.BehaveWeb.Controllers
         {
             return View();
         }
+
     }
 }

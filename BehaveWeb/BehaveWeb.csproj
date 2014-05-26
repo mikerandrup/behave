@@ -128,7 +128,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\css\uilegacy.css" />
     <Content Include="content\css\uimain.css" />
+    <Content Include="content\javascript\uilegacy.js" />
     <Content Include="content\javascript\uimain.js" />
     <Content Include="content\javascript\uioccurrence.js" />
     <Content Include="content\javascript\uihabit.js" />
@@ -169,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Ui\Occurrences.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ui\Legacy.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

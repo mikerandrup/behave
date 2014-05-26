@@ -1,0 +1,43 @@
+﻿#habitsForDay {
+    -webkit-user-select: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 -8px;
+}
+
+#habitsForDay li {
+    padding: 20px;
+    cursor: pointer;
+    margin: 0px;
+    border-top: 1px solid #808080;
+
+    font-weight: bold;
+    font-size: 1.0em;
+    background-color: #ffbbb4;
+    text-align: center;
+}
+
+#habitsForDay li.deemedGreat {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #7AAE64;
+}
+
+
+#habitsForDay li.deemedGood {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #ce7509;
+}
+
+#habitsForDay li.deemedOkay {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #50e8f7;
+}
+
+#habitsForDay li.deemedBad {
+    opacity: 0.7;
+    font-size: 0.9em;
+    background-color: #b60d0d;
+}
