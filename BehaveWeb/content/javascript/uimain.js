@@ -15,7 +15,7 @@
                 elementsObject[key] = document.querySelector(elementsObject[key]);
             }
         },
-        parseHabitsList: function () {
+        parseHabitsData: function () {
             myElementData = elements.myElement.dataset.viewModel;
             viewModel = $.parseJSON(myElementData);
             console.log(viewModel);
@@ -24,7 +24,7 @@
 
     startupFunction = function () {
         methods.attachElements(elements);
-        methods.parseHabitsList();
+        methods.parseHabitsData();
     };
 
     return startupFunction;
