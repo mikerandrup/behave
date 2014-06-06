@@ -3,11 +3,12 @@
     'use strict';
 
     var elements = {
-        myElement: '#habitsList',
+        habitListElement: '#habitsList',
+        dateChooser: "#dateChooser"
     },
 
     viewModel = null,
-    myElementData = null,
+    myHabitsData = null,
     allHabitsObject = null,
 
     methods = {
@@ -17,22 +18,36 @@
             }
         },
         parseHabitsData: function () {
-            myElementData = elements.myElement.dataset.viewModel;
-            viewModel = $.parseJSON(myElementData);
+            myHabitsData = elements.habitListElement.dataset.viewModel;
+            viewModel = $.parseJSON(myHabitsData);
+            console.log(viewModel);
             allHabitsObject = viewModel.HabitsWithOccurrences;
 
+            var habitListMarkup = "";
+
             for (var i=0; i < allHabitsObject.length; i++){
-                methods.addHabitToHtml(allHabitsObject[i])
+                habitListMarkup += methods.createHtmlForHabit(allHabitsObject[i])
             }
+            elements.habitListElement.innerHTML = habitListMarkup;
         },
-        addHabitToHtml: function (toHTML) {
-            $('#habitsList').append('<li>' + toHTML.Habit.Title + '</li>');
+        createHtmlForHabit: function (habitWithOccurrences) {
+            return('<li>' + habitWithOccurrences.Habit.Title + '</li>');
         },
+    },
+
+    callbacks = {
+        jumpToDate: function (evt) {
+            var el = evt.currentTarget,
+                chosenDateString = el.value;
+            window.location.href = "?date=" + window.encodeURIComponent(chosenDateString);
+        }
     },
 
     startupFunction = function () {
         methods.attachElements(elements);
         methods.parseHabitsData();
+
+        $(elements.dateChooser).on("blur", callbacks.jumpToDate);
     };
 
     return startupFunction;
