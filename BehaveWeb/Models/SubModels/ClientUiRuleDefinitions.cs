@@ -11,9 +11,9 @@ namespace Behave.Models.SubModels
         public string cssClass;
     }
 
-    public class ClientEventTypeRules : List<UiRules>
+    public class ClientUiRuleDefinitions : List<UiRules>
     {
-        public ClientEventTypeRules() : base()
+        public ClientUiRuleDefinitions() : base()
         {
             IDictionary<OccurrenceType, bool> requiresReason = new RequireReasonByEventRules();
             IDictionary<OccurrenceType, ClientCssClassNames> clientCssClass = new UiStylesByEventType();
@@ -25,7 +25,7 @@ namespace Behave.Models.SubModels
                         gestureName = rule.Key.ToString(),
                         occurrenceCode = (int)rule.Value,
                         requiresReason = requiresReason[rule.Value],
-                        cssClass = clientCssClass[rule.Value].ToString().ToLower()
+                        cssClass = clientCssClass[rule.Value].ToString()
                     }
                 );
             }
