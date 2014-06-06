@@ -31,8 +31,27 @@
             elements.habitListElement.innerHTML = habitListMarkup;
         },
         createHtmlForHabit: function (habitWithOccurrences) {
-            return('<li>' + habitWithOccurrences.Habit.Title + '</li>');
-        },
+            var cssClass = uiRules.getCssClassForStatusCode(habitWithOccurrences.FirstOccurrenceType);
+
+            return('<li class=' + cssClass + '>' + habitWithOccurrences.Habit.Title + '</li>');
+        }
+    },
+
+    uiRules = {
+        getCssClassForStatusCode: function (statusCode) {
+            if(typeof(statusCode) !== "string"){
+                statusCode = statusCode.toString();
+            }
+            var cssClass = "";
+
+            if ( viewModel.UiRulesForStatusCodes[statusCode] != undefined ){
+                cssClass = viewModel.UiRulesForStatusCodes[statusCode].cssClass;
+            }
+
+            return cssClass;
+        }
+
+
     },
 
     callbacks = {
