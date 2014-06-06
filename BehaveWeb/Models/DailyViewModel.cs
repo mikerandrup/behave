@@ -21,7 +21,8 @@ namespace Behave.BehaveWeb.Models
 
             HabitsWithOccurrences = new List<SingleHabitWithOccurrences>();
 
-            ClientUiRules = new ClientUiRuleDefinitions();
+            UiRulesForGestures = new UiRulesForGestureDefinitions();
+            UiRulesForStatusCodes = new UiRulesForStatusCodeDefinitions();
         }
         public DailyViewModel() : this(DateTime.Now, null) { }
 
@@ -65,6 +66,7 @@ namespace Behave.BehaveWeb.Models
             }
         }
 
-        public ClientUiRuleDefinitions ClientUiRules { get; set; }
+        public UiRulesForGestureDefinitions UiRulesForGestures { get; set; }
+        public UiRulesForStatusCodeDefinitions UiRulesForStatusCodes { get; set; }
     }
 }
