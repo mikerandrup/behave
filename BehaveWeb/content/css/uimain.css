@@ -37,14 +37,18 @@ header nav li:last-of-type{
 	margin-bottom: 2em;
 }
 footer nav li{
-	min-width: 80%;
 	overflow: hidden;
+}
+footer nav a{
+	line-height: 1em;
+	padding: 0.3em;
 }
 #habitsList li {
 	list-style: none;
-	line-height: 3em;
+	line-height: 600%;
 	white-space:nowrap;
-	padding: 0 2em;
+	padding: 0 1em;
+	font-weight: bold;
 	border-bottom: 1px solid rgba(0,0,0,0.30);
 	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.10) 100%); /* Chrome10+,Safari5.1+ */
 	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.10) 100%); /* W3C */
