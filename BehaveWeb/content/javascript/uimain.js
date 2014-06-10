@@ -34,6 +34,26 @@
             var cssClass = uiRules.getCssClassForStatusCode(habitWithOccurrences.FirstOccurrenceType);
 
             return('<li class=' + cssClass + '>' + habitWithOccurrences.Habit.Title + '</li>');
+        },
+        getGestureFromAmount: function (amount) {
+            if (amount < 0.125) {
+                return "farLeft";
+            }
+            else if (amount >= 0.125 && amount < 0.375) {
+                return "slightLeft";
+            }
+            else if (amount >= 0.375 && amount < 0.625) {
+                return "tap"
+            }
+            else if (amount >= 0.625 && amount < 0.875) {
+                return "slightRight";
+            }
+            else if (amount >= 0.875) {
+                return "farRight";
+            }
+            else {
+                return "";
+            }
         }
     },
 
@@ -49,16 +69,48 @@
             }
 
             return cssClass;
+        },
+        getRulesForGesture: function (gestureName) {
+            if (viewModel.UiRulesForGestures[gestureName] != undefined) {
+                return viewModel.UiRulesForGestures[gestureName];
+            }
+
+            throw new Exception("Invalid gesture name " + gestureName);
         }
-
-
     },
 
     callbacks = {
         jumpToDate: function (evt) {
             var el = evt.currentTarget,
                 chosenDateString = el.value;
-            window.location.href = "?date=" + window.encodeURIComponent(chosenDateString);
+            
+            if(chosenDateString.length > 0){                
+                window.location.href = "?date=" + window.encodeURIComponent(chosenDateString);
+            }
+            else{
+                console.log("empty date string");
+                return false;
+            }
+        },
+        handleFinalPosition: function (evt) {
+            var el = evt.currentTarget,
+                xCoord = evt.clientX,
+                elWidth = el.clientWidth,
+                amount = xCoord/elWidth;
+
+            var gestureName = methods.getGestureFromAmount(amount);
+
+            console.log(amount, gestureName);
+
+            var rules = uiRules.getRulesForGesture(gestureName),
+                occurrenceCode = rules.occurrenceCode,
+                requiresReason = rules.requiresReason;
+
+            console.log(occurrenceCode, requiresReason);
+
+            var cssClassName = uiRules.getCssClassForStatusCode(occurrenceCode);
+
+            el.className = cssClassName;
         }
     },
 
@@ -67,6 +119,7 @@
         methods.parseHabitsData();
 
         $(elements.dateChooser).on("blur", callbacks.jumpToDate);
+        $(elements.habitListElement).on("click", "li", callbacks.handleFinalPosition);
     };
 
     return startupFunction;

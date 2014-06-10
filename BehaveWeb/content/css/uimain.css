@@ -8,6 +8,7 @@ body {
 	font-size: 14px;
 	color:#282828;
 	background-color: #f0f0f0;
+	-webkit-user-select: none;
 }
 header,
 footer {
