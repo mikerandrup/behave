@@ -19,9 +19,18 @@
 <ul id="habitsList" data-view-model="@Model.ToJson()"><li>Loading...</li></ul>
 
 @section PageHeadSection {
-    <link rel="stylesheet" href="/content/css/uimain.css"/>
+    <link rel="stylesheet" href="/content/css/ember/style.css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
 }
 @section PageJavaScript {
-    <script src="/content/javascript/uimain.js"></script>
+    <script src="/content/javascript/ember/libs/jquery-1.10.2.min.js"></script>
+    <script src="/content/javascript/ember/libs/handlebars-1.0.0.js"></script>
+    <script src="/content/javascript/ember/libs/ember.js"></script>
+    <script src="/content/javascript/ember/libs/ember-data.js"></script>
+    <script src="/content/javascript/ember/libs/localstorage_adapter.js"></script>
+    <script src="/content/javascript/ember/application.js"></script>
+    <script src="/content/javascript/ember/router.js"></script>
+    <script src="/content/javascript/ember/models/todo.js"></script>
+    <script src="/content/javascript/ember/controllers/todo_controller.js"></script>
+
 }
